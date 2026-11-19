@@ -1,0 +1,4 @@
+# Example experiment override for stage 01 "weakness -> fix -> before/after".
+# Merged over configs/chunking.yaml by the runner.
+chunk_size: 200
+chunk_overlap: 0

@@ -1,0 +1,19 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+dist/
+# Corpus is downloaded locally, never committed (see data/README.md)
+data/raw/
+data/processed/
+data/index/
+# Run outputs (reports/*.md templates ARE committed)
+runs/
+.env
+# Personal notes in Russian (not for public repo)
+EXPLAINER.md
+TODO.md
+CV.md
+THIRD_PARTY.md

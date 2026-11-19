@@ -1,0 +1,44 @@
+# Retrieval eval gate (stage 03, ADR-0005).
+# Deterministic: BM25 + fixed corpus commit + golden set => same numbers every run, no LLM, no secrets.
+name: eval-gate
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  retrieval-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install
+        run: uv sync --extra dev
+
+      - name: Cache corpus (keyed by pinned handbook commit)
+        uses: actions/cache@v4
+        with:
+          path: data/raw
+          key: corpus-${{ hashFiles('data/CORPUS_COMMIT') }}
+
+      - name: Download corpus subset
+        run: uv run python scripts/download_corpus.py
+
+      - name: Unit tests
+        run: uv run pytest -q
+
+      - name: Retrieval eval gate
+        run: uv run kb gate --config configs/gate.yaml   # exits 1 below threshold / on regression
+
+      - name: Upload run artefacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eval-run
+          path: runs/

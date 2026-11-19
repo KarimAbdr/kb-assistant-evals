@@ -1,0 +1,3 @@
+# Example experiment override: BM25 vs hybrid (requires `pip install -e .[vector]`).
+retrieval:
+  mode: hybrid

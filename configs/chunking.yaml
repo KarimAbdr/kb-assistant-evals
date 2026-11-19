@@ -1,0 +1,8 @@
+# Chunking strategy (see ADR-0004). Changing these values changes chunk ids and
+# retrieval metrics; the CI eval gate (ADR-0005) protects against regressions.
+strategy: markdown_headings   # markdown_headings | recursive_chars
+chunk_size: 800               # characters (LocalSmartRAG default)
+chunk_overlap: 150            # characters, must be < chunk_size
+max_heading_level: 3          # split on #, ##, ###
+keep_heading_path: true       # prepend "H1 > H2 > H3" to each chunk (helps BM25 + citations)
+protect_code_blocks: true     # never split inside ``` fences

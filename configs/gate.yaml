@@ -1,0 +1,12 @@
+# CI eval gate (stage 03, ADR-0005). Retrieval-only => deterministic, no LLM needed.
+golden_set: evals/golden_set.jsonl
+baseline: evals/baseline.json
+k: 5
+thresholds:            # absolute floors: below => fail
+  recall_at_k: "{TBD}"
+  mrr: "{TBD}"
+  hit_rate: "{TBD}"
+max_regression:        # allowed drop vs baseline (absolute): bigger drop => fail
+  recall_at_k: 0.02
+  mrr: 0.02
+  hit_rate: 0.02

@@ -1,0 +1,5 @@
+{"item_id": "q001", "answer": "Team members get 6 complimentary therapy sessions per year with licensed professionals [1].", "_note": "fixture: correct and grounded"}
+{"item_id": "q002", "answer": "Children are eligible up to age 27 [1].", "_note": "fixture: correct and grounded"}
+{"item_id": "q003", "answer": "Coverage must be needed for more than 30 days [1]. The bonus is always exactly $1,000.", "_note": "fixture: partially correct + one unsupported claim (groundedness demo)"}
+{"item_id": "q004", "answer": "Yes, scheduled on-call periods are an exception [1].", "_note": "fixture: correct and grounded"}
+{"item_id": "q005", "answer": "I could not find this in the documentation.", "_note": "fixture: correct refusal"}

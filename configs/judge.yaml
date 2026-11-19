@@ -1,0 +1,6 @@
+# LLM-as-judge (stage 02). Default judge is a fixture-backed fake.
+provider: fake
+fake:
+  verdicts_file: evals/fixtures/fake_judgements.jsonl
+rubric_version: v1          # see src/kb_assistant/judge/rubric.py
+scale: [0, 1, 2]            # 0 = fail, 1 = partial, 2 = pass

@@ -1,0 +1,48 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "kb-assistant-evals"
+version = "0.1.0"
+description = "Enterprise knowledge assistant (RAG over the GitLab Handbook) with an evaluation harness, validated LLM judge, CI eval gate and agent trajectory evals."
+readme = "README.md"
+requires-python = ">=3.11,<3.13"
+license = { text = "MIT" }
+dependencies = [
+  "langchain-core>=0.3,<2.0",
+  "langchain-community>=0.3,<1.0",
+  "rank-bm25>=0.2.2",
+  "pydantic>=2.7",
+  "pyyaml>=6.0",
+  "python-frontmatter>=1.1",
+]
+
+[project.optional-dependencies]
+# Optional dense retrieval (local, free). Enabled via configs/retrieval.yaml -> mode: vector|hybrid
+vector = [
+  "langchain-huggingface>=0.1",
+  "sentence-transformers>=3.0",
+  "langchain-chroma>=0.2",
+  "chromadb>=0.5",
+]
+# Optional real local LLM later (Stage "beyond"): swap FakeProvider -> OllamaProvider
+ollama = ["langchain-ollama>=0.2"]
+dev = ["pytest>=8.0", "ruff>=0.6", "scikit-learn>=1.4"]  # sklearn only to cross-check kappa in tests
+
+[project.scripts]
+kb = "kb_assistant.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/kb_assistant"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+markers = [
+  "step(id): the TODO.md step that turns this test green",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"

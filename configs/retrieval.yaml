@@ -1,0 +1,18 @@
+# Retrieval configuration (see ADR-0002).
+mode: bm25          # bm25 (default, deterministic, CI) | vector | hybrid  (vector/hybrid need extra "vector")
+top_k: 5            # chunks passed to the generator
+candidate_k: 20     # per-retriever candidates before fusion
+bm25:
+  k1: 1.5
+  b: 0.75
+  lowercase: true
+  remove_stopwords: true
+  stemming: false
+vector:
+  embedding_model: BAAI/bge-small-en-v1.5
+  store: chroma     # chroma | faiss
+  persist_dir: data/index/chroma
+hybrid:
+  fusion: rrf       # rrf | weighted
+  alpha: 0.6        # weight of vector score when fusion=weighted
+  rrf_k: 60

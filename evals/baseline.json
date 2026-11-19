@@ -1,0 +1,11 @@
+{
+  "_comment": "Written by `kb gate --update-baseline` (step 3.2). null = not measured yet.",
+  "corpus_commit": null,
+  "config_fingerprint": null,
+  "k": 5,
+  "metrics": {
+    "recall_at_k": null,
+    "mrr": null,
+    "hit_rate": null
+  }
+}

@@ -1,0 +1,11 @@
+# Generation (see ADR-0003). No paid APIs: default provider is a fake one.
+provider: fake            # fake | ollama (later, one line)
+fake:
+  responses_file: evals/fixtures/fake_answers.jsonl
+ollama:
+  model: llama3.1:8b
+  base_url: http://localhost:11434
+  temperature: 0.0
+prompt:
+  require_citations: true
+  refuse_when_no_context: true
