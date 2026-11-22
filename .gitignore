@@ -12,7 +12,6 @@ data/index/
 # Run outputs (reports/*.md templates ARE committed)
 runs/
 .env
-# Personal notes in Russian (not for public repo)
 EXPLAINER.md
 TODO.md
 CV.md
